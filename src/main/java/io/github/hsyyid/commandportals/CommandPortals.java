@@ -73,7 +73,7 @@ public class CommandPortals
 		
 		CommandSpec toggleSetPortalCommandSpec = CommandSpec.builder()
 			.description(Texts.of("Toggle Set Portal Command"))
-			.permission("worldportals.setitem")
+			.permission("commandportals.togglesetportal")
 			.arguments(GenericArguments.optional(GenericArguments.onlyOne(GenericArguments.remainingJoinedStrings(Texts.of("command")))))
 			.executor(new ToggleSetPortalExecutor())
 			.build();
