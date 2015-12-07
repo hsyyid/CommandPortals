@@ -17,14 +17,18 @@ public class PlayerMoveListener
 		{
 			Player player = (Player) event.getTargetEntity();
 			Optional<Object> optionalValue = ConfigManager.getValue("portal.location." + player.getLocation().getBlockX() + "." + player.getLocation().getBlockY() + "." + player.getLocation().getBlockZ());
-			
+
 			if (optionalValue.isPresent())
 			{
 				Object object = optionalValue.get();
 				String command = (String) object;
-				command = command.replaceAll("@p", player.getName());
-				System.out.println(command);
-				CommandPortals.game.getCommandManager().process(CommandPortals.game.getServer().getConsole(), command);
+
+				if (!command.equals("null"))
+				{
+					command = command.replaceAll("@p", player.getName());
+					System.out.println(command);
+					CommandPortals.game.getCommandManager().process(CommandPortals.game.getServer().getConsole(), command);
+				}
 			}
 		}
 	}
