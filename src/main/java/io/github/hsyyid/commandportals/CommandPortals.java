@@ -11,6 +11,7 @@ import ninja.leaping.configurate.commented.CommentedConfigurationNode;
 import ninja.leaping.configurate.loader.ConfigurationLoader;
 import org.slf4j.Logger;
 import org.spongepowered.api.Game;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.args.GenericArguments;
 import org.spongepowered.api.command.spec.CommandSpec;
 import org.spongepowered.api.config.DefaultConfig;
@@ -52,7 +53,7 @@ public class CommandPortals
 	{
 		getLogger().info("CommandPortals loading...");
 
-		game = event.getGame();
+		game = Sponge.getGame();
 
 		try
 		{

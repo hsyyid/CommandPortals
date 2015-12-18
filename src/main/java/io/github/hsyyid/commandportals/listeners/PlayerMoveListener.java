@@ -26,7 +26,6 @@ public class PlayerMoveListener
 				if (!command.equals("null"))
 				{
 					command = command.replaceAll("@p", player.getName());
-					System.out.println(command);
 					CommandPortals.game.getCommandManager().process(CommandPortals.game.getServer().getConsole(), command);
 				}
 			}
