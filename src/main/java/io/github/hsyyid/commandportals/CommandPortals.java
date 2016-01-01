@@ -18,13 +18,13 @@ import org.spongepowered.api.config.DefaultConfig;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.game.state.GameInitializationEvent;
 import org.spongepowered.api.plugin.Plugin;
-import org.spongepowered.api.text.Texts;
+import org.spongepowered.api.text.Text;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Set;
 
-@Plugin(id = "CommandPortals", name = "CommandPortals", version = "0.1")
+@Plugin(id = "CommandPortals", name = "CommandPortals", version = "0.2")
 public class CommandPortals
 {
 	public static Game game;
@@ -73,9 +73,9 @@ public class CommandPortals
 		}
 		
 		CommandSpec toggleSetPortalCommandSpec = CommandSpec.builder()
-			.description(Texts.of("Toggle Set Portal Command"))
+			.description(Text.of("Toggle Set Portal Command"))
 			.permission("commandportals.togglesetportal")
-			.arguments(GenericArguments.optional(GenericArguments.onlyOne(GenericArguments.remainingJoinedStrings(Texts.of("command")))))
+			.arguments(GenericArguments.optional(GenericArguments.onlyOne(GenericArguments.remainingJoinedStrings(Text.of("command")))))
 			.executor(new ToggleSetPortalExecutor())
 			.build();
 

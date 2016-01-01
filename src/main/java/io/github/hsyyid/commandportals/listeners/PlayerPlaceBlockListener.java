@@ -8,7 +8,7 @@ import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.block.ChangeBlockEvent;
-import org.spongepowered.api.text.Texts;
+import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
@@ -41,7 +41,7 @@ public class PlayerPlaceBlockListener
 					ConfigManager.saveLocation(location, setPortalFound.getCommand());
 				}
 
-				player.sendMessage(Texts.of(TextColors.BLUE, "[CommandPortals]: ", TextColors.GREEN, "Set portal."));
+				player.sendMessage(Text.of(TextColors.BLUE, "[CommandPortals]: ", TextColors.GREEN, "Set portal."));
 			}
 		}
 	}
