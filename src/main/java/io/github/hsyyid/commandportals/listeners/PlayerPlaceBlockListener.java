@@ -8,6 +8,7 @@ import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.block.ChangeBlockEvent;
+import org.spongepowered.api.event.filter.cause.First;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.world.Location;
@@ -16,33 +17,28 @@ import org.spongepowered.api.world.World;
 public class PlayerPlaceBlockListener
 {
 	@Listener
-	public void onPlayerPlaceBlock(ChangeBlockEvent.Place event)
+	public void onPlayerPlaceBlock(ChangeBlockEvent.Place event, @First Player player)
 	{
-		if (event.getCause().first(Player.class).isPresent())
+		SetPortal setPortalFound = null;
+
+		for (SetPortal setPortal : CommandPortals.setPortalsList)
 		{
-			Player player = event.getCause().first(Player.class).get();
-
-			SetPortal setPortalFound = null;
-
-			for (SetPortal setPortal : CommandPortals.setPortalsList)
+			if (setPortal.getPlayerUUID().equals(player.getUniqueId()))
 			{
-				if (setPortal.getPlayerUUID().equals(player.getUniqueId()))
-				{
-					setPortalFound = setPortal;
-					break;
-				}
+				setPortalFound = setPortal;
+				break;
+			}
+		}
+
+		if (setPortalFound != null)
+		{
+			for (Transaction<BlockSnapshot> transaction : event.getTransactions())
+			{
+				Location<World> location = transaction.getFinal().getLocation().get();
+				ConfigManager.saveLocation(location, setPortalFound.getCommand());
 			}
 
-			if (setPortalFound != null)
-			{
-				for (Transaction<BlockSnapshot> transaction : event.getTransactions())
-				{
-					Location<World> location = transaction.getFinal().getLocation().get();
-					ConfigManager.saveLocation(location, setPortalFound.getCommand());
-				}
-
-				player.sendMessage(Text.of(TextColors.BLUE, "[CommandPortals]: ", TextColors.GREEN, "Set portal."));
-			}
+			player.sendMessage(Text.of(TextColors.BLUE, "[CommandPortals]: ", TextColors.GREEN, "Set portal."));
 		}
 	}
 }
