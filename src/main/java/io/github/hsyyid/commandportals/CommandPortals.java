@@ -24,7 +24,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Set;
 
-@Plugin(id = "CommandPortals", name = "CommandPortals", version = "0.2")
+@Plugin(id = "io.github.hsyyid.commandportals", name = "CommandPortals", version = "0.3", description = "This plugin enables server admins to create portals that execute specific commands.")
 public class CommandPortals
 {
 	public static Game game;
